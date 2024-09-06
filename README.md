@@ -59,7 +59,7 @@ public class Toppers_22MIS1006 {
 - For each subject, it iterates over the list of students and their scores, comparing each score to the current highest. If a higher score is found, it updates the top score and student's name.
 - After processing all scores, the reducer outputs the subject along with the name and score of the top-performing student.
 ```java
-    public static class Partion extends Partitioner<Text, Text> {
+    public static class Partition extends Partitioner<Text, Text> {
         public int getPartition(Text key, Text val, int num) {
             switch (key.toString()) {
                 case "Mathematics": return 0;
@@ -76,6 +76,8 @@ public class Toppers_22MIS1006 {
         }
     }
 ```
+-The Partition class extends Hadoop's Partitioner class and specifies that both the input and output key-value pairs will be of type Text.
+  The reduce function is defined here takes three parameters:
 ```java
     public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
@@ -87,7 +89,7 @@ public class Toppers_22MIS1006 {
 
         job.setMapperClass(Map.class);
         job.setReducerClass(Reduce.class);
-        job.setPartitionerClass(Partion.class);
+        job.setPartitionerClass(Partition.class);
 
         job.setNumReduceTasks(10);
 
@@ -101,3 +103,4 @@ public class Toppers_22MIS1006 {
     }
 }
 ```
+![issue](https://github.com/user-attachments/assets/d3eb92e5-a401-4420-8125-195a6b84c502)
