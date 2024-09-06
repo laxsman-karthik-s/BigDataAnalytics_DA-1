@@ -35,7 +35,7 @@ public class Toppers_22MIS1006 {
     }
   } 
 
-  public static class Partion extends Partitioner<Text,Text>{
+  public static class Partition extends Partitioner<Text,Text>{
     public int getPartition(Text key,Text val,int num){
       if("Mathematics".equals(key.toString())) return 0;
       else if("Physics".equals(key.toString())) return 1;
@@ -60,7 +60,7 @@ public class Toppers_22MIS1006 {
 
     job.setMapperClass(Map.class);
     job.setReducerClass(Reduce.class);
-    job.setPartitionerClass(Partion.class);
+    job.setPartitionerClass(Partition.class);
 
     job.setNumReduceTasks(10);
 
